@@ -102,8 +102,6 @@ int main(int argc, char* argv[])
         }
     }
 
-    PDFCreationSettings creationSettings(true, true, EncryptionOptions(outputFilePassword, userProtectionFlag, outputFileOwnerPassword));
-
     EStatusCode status = PDFWriter::RecryptPDF(
                             inputFilePath, 
                             inputFilePassword, 
