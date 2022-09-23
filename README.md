@@ -1,6 +1,4 @@
-A CLI (command line interface) to Extract text from PDF files.
-Use from your terminal to dump a PDF file text to the std output.
-Options exists to output to file, choose pages range etc.
+A CLI (command line interface) to recreate PDF from original PDF with optional adding or removing or modifying its password.
 
 ```bash
 Usage: Recrypt inputfilepath outputfilepath <option(s)>
