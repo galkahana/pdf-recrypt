@@ -85,12 +85,13 @@ This implementation is based on hummus PDF library. It is a simple CLI implement
 
 PDF provides and option to have both a "user" password and an "owner" password. In such a case, a user providing the "user" password will have a more limited access to the PDF file, like not being able to edit it, or print only a lower resolution of the file. If providing "owner" password full access is granted. To control what options are available when providing "user" password use the `--user-protection-flag` option. The flag is a bit field that’s explained in section 3.5.2 in the PDF specs. The short version is provided here:
 
-bit 3 should be 1 if you want to allow the user to print the document
-bit 4 should be 1 if you want to allow modification of the document
-bit 5 should be 1 if you want to allow copying or extracting text and graphics from the document
-bit 6 should be 1 if you want to allow adding text annotations, fill form field. If bit 4 is set it allows to create new fields. like a signature.
-bit 9 should be 1 if you want to allow filling forms, even if bit 6 is clear.
-bit 10 should be 1 if you want to allow extracting text and graphics in support of accessibility only, even if bit 5 is clear.
-bit 11 should be 1 if you want to allow assembling the document. rotate, insert, delete pages, bookmarks and thumbnails.
-bit 12 should be 1 if you want to allow printing the document in a good res. Setting just 3 will normally print a low res form.
+- bit 3 should be 1 if you want to allow the user to print the document
+- bit 4 should be 1 if you want to allow modification of the document
+- bit 5 should be 1 if you want to allow copying or extracting text and graphics from the document
+- bit 6 should be 1 if you want to allow adding text annotations, fill form field. If bit 4 is set it allows to create new fields. like a signature.
+- bit 9 should be 1 if you want to allow filling forms, even if bit 6 is clear.
+- bit 10 should be 1 if you want to allow extracting text and graphics in support of accessibility only, even if bit 5 is clear.
+- bit 11 should be 1 if you want to allow assembling the document. rotate, insert, delete pages, bookmarks and thumbnails.
+- bit 12 should be 1 if you want to allow printing the document in a good res. Setting just 3 will normally print a low res form.
+
 A good choice for most cases is 4, which means only the low res print is allowed. This is the sort of a safe exchange scenario. Note that Hummus handles the rest of the unexplained fields and also the two complement part that the specs require - so you don’t have to. but it’s ok if you’ll pass a flag in this form too. if you must.
