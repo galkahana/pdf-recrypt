@@ -55,7 +55,7 @@ This will build the project inside the build folder. You will be able to look up
 If you want, you can use the "install" verb of cmake to install a built product. Use the prefix param to specify where you want the result to be installed to
 
 ```bash
-cmake --install ./build/Recrypt --prefix ./etc/install
+cmake --install ./build --prefix ./etc/install --component executable
 ```
 
 This will install the Recrypt executable in ./etc/install.
