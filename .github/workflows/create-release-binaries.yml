@@ -1,4 +1,4 @@
-name: create-reelease-binaries
+name: create-release-binaries
 
 on:
   release:
@@ -22,6 +22,4 @@ jobs:
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
     - name: Upload to release
       run: |
-        for f in $(find . -name '${{github.workspace}}/build/Recrypt/Release/*'); do
-          gh release upload ${{ github.event.release.tag_name }} $f
-        done
+        gh release upload ${{ github.event.release.tag_name }}  ${{github.workspace}}/build/Recrypt/Recrypt
