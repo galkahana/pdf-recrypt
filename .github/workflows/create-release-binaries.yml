@@ -26,4 +26,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release upload ${{ github.event.release.tag_name }} $ARCHIVE_NAME
+        gh release upload ${{ github.event.release.tag_name }} "$ARCHIVE_NAME".tar.gz
