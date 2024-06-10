@@ -39,11 +39,9 @@ jobs:
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}  ${{ matrix.extra_cmake_config_flags}}
     - name: Build with CMake
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-    - name: Show folder
-      if: ${{ matrix.os == 'windows-latest'}}
-      run: dir ${{github.workspace}}${{ matrix.executable_path }}
     - name: Create Archive
-      run: tar -czf "$ARCHIVE_NAME".tar.gz -C ${{github.workspace}}${{ matrix.executable_path }} ${{ matrix.executable_name }}
+      working-directory: ${{github.workspace}}${{ matrix.executable_path }}
+      run: tar -czf "$ARCHIVE_NAME".tar.gz ${{ matrix.executable_name }}
     - name: Upload to release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
