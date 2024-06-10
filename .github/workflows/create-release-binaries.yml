@@ -44,7 +44,7 @@ jobs:
       run: tar --help
     - name: Create Archive
       working-directory: ${{github.workspace}}${{ matrix.executable_path }}
-      run: tar -czf "$ARCHIVE_NAME".tar.gz ${{ matrix.executable_name }}
+      run: tar -c -z -f "$ARCHIVE_NAME".tar.gz ${{ matrix.executable_name }}
     - name: Upload to release
       working-directory: ${{github.workspace}}${{ matrix.executable_path }}
       env:
