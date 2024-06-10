@@ -22,12 +22,12 @@ jobs:
               executable_path: /build/Recrypt
               executable_name: Recrypt
               os_name: mac
-              extra_cmake_config_flags: -DCMAKE_OSX_ARCHITECTURES=arm64;x86_64; # universal. arm and intel
+              extra_cmake_config_flags: -DCMAKE_OSX_ARCHITECTURES=arm64;x86_64 # universal. arm and intel
             - os: windows-latest
               executable_path: /build/Recrypt/Release
               executable_name: Recrypt.exe
               os_name: win
-              extra_cmake_config_flags: -DCMAKE_GENERATOR_PLATFORM=x64; # make sure it's x64
+              extra_cmake_config_flags: -DCMAKE_GENERATOR_PLATFORM=x64 # make sure it's x64
     runs-on: ${{ matrix.os }}
     permissions:
       contents: write
@@ -39,6 +39,9 @@ jobs:
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}  ${{ matrix.extra_cmake_config_flags}}
     - name: Build with CMake
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+    - name: Show folder
+      if: ${{ matrix.os == 'windows-latest'}}
+      run: dir ${{github.workspace}}${{ matrix.executable_path }}
     - name: Create Archive
       run: tar -czf "$ARCHIVE_NAME".tar.gz -C ${{github.workspace}}${{ matrix.executable_path }} ${{ matrix.executable_name }}
     - name: Upload to release
