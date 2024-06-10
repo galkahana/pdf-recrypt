@@ -32,22 +32,19 @@ jobs:
     permissions:
       contents: write
     env:
-      ARCHIVE_NAME:  ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}-${{ matrix.os_name }}
+      ARCHIVE_NAME:  ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}-${{ matrix.os_name }}.tar.gz
     steps:
     - uses: actions/checkout@v4
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}  ${{ matrix.extra_cmake_config_flags}}
     - name: Build with CMake
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-    - name: Tar help
-      if: ${{ matrix.os == 'windows-latest' }}
-      run: tar --help
     - name: Create Archive
       working-directory: ${{github.workspace}}${{ matrix.executable_path }}
-      run: tar -c -z -f "$ARCHIVE_NAME".tar.gz ${{ matrix.executable_name }}
+      run: tar -czf ${{env.ARCHIVE_NAME}} ${{ matrix.executable_name }}
     - name: Upload to release
       working-directory: ${{github.workspace}}${{ matrix.executable_path }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release upload ${{ github.event.release.tag_name }} "$ARCHIVE_NAME".tar.gz
+        gh release upload ${{ github.event.release.tag_name }} ${{env.ARCHIVE_NAME}}
