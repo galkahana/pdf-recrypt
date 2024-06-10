@@ -22,7 +22,7 @@ jobs:
               executable_path: /build/Recrypt
               executable_name: Recrypt
               os_name: mac
-              extra_cmake_config_flags: -DCMAKE_OSX_ARCHITECTURES=arm64;x86_64 # universal. arm and intel
+              extra_cmake_config_flags: -DCMAKE_OSX_ARCHITECTURES:STRING=x86_64|arm64 # universal. arm and intel
             - os: windows-latest
               executable_path: /build/Recrypt/Release
               executable_name: Recrypt.exe
