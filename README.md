@@ -13,6 +13,10 @@ Options:
         -h, --help                      Show this help message
 ```
 
+# Binaries downloads
+
+You can download built executables from the Release section of this repo. Each release includes compressed tar files, with per-platform binaries.
+
 # First time around
 
 This is a C++ Project using CMake as project builder.
