@@ -28,6 +28,8 @@ To build/develop You will need:
 
 # Building and Installing the project
 
+*PDFWriter requires openssl to supportd PDF 2.0 encryption. if not available it will fallback on disabling this feature.*
+
 Once you installed pre-reqs, you can now build the project.
 
 ## Create the project files
